@@ -122,6 +122,8 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 
                 $scope.singleSelection = $scope.settings.selectionLimit === 1;
 
+                var includes = typeof _.includes === 'undefined' ? _.contains : _.includes;
+
                 function getFindObj(id) {
                     var findObj = {};
 
@@ -152,7 +154,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         var parentFound = false;
 
                         while (angular.isDefined(target) && target !== null && !parentFound) {
-                            if (_.contains(target.className.split(' '), 'multiselect-parent') && !parentFound) {
+                            if (includes(target.className.split(' '), 'multiselect-parent') && !parentFound) {
                                 if(target === $dropdownTrigger) {
                                     parentFound = true;
                                 }
